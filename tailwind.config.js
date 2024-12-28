@@ -9,7 +9,11 @@ export default {
       fontFamily: {
         'Raleway': "Raleway",
         'Cinzel': "Cinzel",
-      }
+      },
+      textUnderlineOffset: {
+        12: '12px',
+        16: '16px',
+      },
     },
   },
   plugins: [
