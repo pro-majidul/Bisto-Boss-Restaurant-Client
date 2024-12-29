@@ -2,10 +2,11 @@ import React from 'react'
 import Banner from '../components/banner/Banner'
 import Category from '../components/category/Category'
 import Bistro from '../components/Bistro'
+import OurMenu from '../components/OurMenu'
 
 const Home = () => {
   return (
-    <div>
+    <section>
       <section>
         <Banner></Banner>
       </section>
@@ -29,10 +30,14 @@ const Home = () => {
           --Check it Out--
         </p>
         <h3 className='text-center  text-3xl uppercase my-8 text-orange-400 font-light underline underline-offset-16 decoration-gray-700  decoration-wavy'>
-         From Our Menu
+          From Our Menu
         </h3>
+
+       <div className='mt-5'>
+       <OurMenu></OurMenu>
+       </div>
       </section>
-    </div>
+    </section>
   )
 }
 
