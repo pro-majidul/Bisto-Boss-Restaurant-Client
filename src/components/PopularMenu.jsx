@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MenuCard from '../shared/MenuCard';
 
-const OurMenu = () => {
+const PopularMenu = () => {
 
     const [items, setItems] = useState([])
 
@@ -24,4 +24,4 @@ const OurMenu = () => {
     );
 };
 
-export default OurMenu;
+export default PopularMenu;
