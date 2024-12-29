@@ -7,10 +7,14 @@ import Chef from '../components/Chef'
 import Section from '../shared/Section'
 import Features from '../components/Features'
 import Testimonial from '../components/Testimonial'
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   return (
     <section>
+      <Helmet>
+        <title>Bistro Boss | Home</title>
+      </Helmet>
       {/* banner Section */}
       <section>
         <Banner></Banner>

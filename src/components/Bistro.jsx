@@ -5,7 +5,7 @@ const Bistro = () => {
   return (
     <div>
       <div
-        className={`hero min-h-[calc(80vh-320px)]`}
+        className={`hero min-h-[calc(80vh-320px)] bg-fixed`}
         style={{
           backgroundImage: `url(${bgImage1})`,
           opacity: 1,
