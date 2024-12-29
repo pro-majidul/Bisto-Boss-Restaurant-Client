@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import ShopinCard from '../assets/icon/shopingCart.png'
 
 const Navbar = () => {
     const navOptions = <>
@@ -47,7 +48,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                 </div>
-                <div>
+                <div className='items-center'>
+                    <img className='w-10 h-10' src={ShopinCard} alt="" />
                     <a className="btn">Button</a>
                 </div>
 
