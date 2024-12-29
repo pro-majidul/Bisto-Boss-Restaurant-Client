@@ -6,6 +6,7 @@ import PopularMenu from '../components/PopularMenu'
 import Chef from '../components/Chef'
 import Section from '../shared/Section'
 import Features from '../components/Features'
+import Testimonial from '../components/Testimonial'
 
 const Home = () => {
   return (
@@ -59,6 +60,9 @@ const Home = () => {
 
       {/* Features Section  */}
       <Features></Features>
+
+      {/* Testimonial */}
+      <Testimonial></Testimonial>
     </section>
   )
 }

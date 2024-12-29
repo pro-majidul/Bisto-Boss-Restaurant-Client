@@ -4,7 +4,7 @@ import featureimg from '../assets/home/featured.jpg'
 import './feature.css'
 const Features = () => {
     return (
-        <div className='feature my-10 bg-fixed py-10'>
+        <div className='feature my-10 bg-fixed py-10 rounded-xl'>
             <div className='my-5 py-5'>
                 <Section subHeading='check it Out' heading='From Features Menu'></Section>
             </div>
