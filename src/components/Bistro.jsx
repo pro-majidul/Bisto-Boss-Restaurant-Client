@@ -13,7 +13,7 @@ const Bistro = () => {
           backgroundPosition: 'center'
         }}
       >
-        <div className='hero-content bg-white w-10/12 mx-auto py-6     text-neutral-content text-center'>
+        <div className='hero-content bg-white w-10/12 mx-auto m-6  p-6 text-center'>
           <div className='max-w-4xl py-5'>
             <h1 className='mb-5 md:text-5xl text-2xl font-normal font-Cinzel text-black'>
               Bistro Boss

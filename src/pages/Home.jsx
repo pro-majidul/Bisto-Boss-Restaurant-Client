@@ -4,6 +4,8 @@ import Category from '../components/category/Category'
 import Bistro from '../components/Bistro'
 import PopularMenu from '../components/PopularMenu'
 import Chef from '../components/Chef'
+import Section from '../shared/Section'
+import Features from '../components/Features'
 
 const Home = () => {
   return (
@@ -15,12 +17,8 @@ const Home = () => {
 
       {/* Category Section */}
       <section className='md:my-10 md:py-10 py-5 my-5 '>
-        <p className='text-yellow-300 italic text-center underline underline-offset-16 decoration-gray-700  decoration-wavy'>
-          --From 11:00am to 10:00pm--
-        </p>
-        <h3 className='text-center  text-3xl uppercase my-8 text-orange-400 font-light underline underline-offset-16 decoration-gray-700  decoration-wavy'>
-          Order online
-        </h3>
+
+        <Section subHeading='From 11:00am to 10:00pm' heading='Order online'></Section>
 
         <div className='py-5 my-5'>
           <Category></Category>
@@ -36,12 +34,7 @@ const Home = () => {
       {/* Popular Menu Section  */}
 
       <section className='md:my-10 md:py-10 py-5 my-5 '>
-        <p className='text-yellow-300 italic text-center underline underline-offset-16 decoration-gray-700  decoration-wavy'>
-          --Check it Out--
-        </p>
-        <h3 className='text-center  text-3xl uppercase my-8 text-orange-400 font-light underline underline-offset-16 decoration-gray-700  decoration-wavy'>
-          From Our Popular Menu
-        </h3>
+        <Section subHeading='Check it Out' heading='From Our Popular Menu'></Section>
 
         <div className='mt-5'>
           <PopularMenu></PopularMenu>
@@ -60,15 +53,12 @@ const Home = () => {
 
       {/* Chef Recomended Section  */}
       <section className='my-5 py-5'>
-        <p className='text-yellow-300 italic text-center underline underline-offset-16 decoration-gray-700  decoration-wavy'>
-          --Should Try--
-        </p>
-        <h3 className='text-center  text-3xl uppercase my-8 text-orange-400 font-light underline underline-offset-16 decoration-gray-700  decoration-wavy'>
-          Chef Recommended
-        </h3>
-
+        <Section subHeading='Should try' heading='Chef Recommended'></Section>
         <Chef></Chef>
       </section>
+
+      {/* Features Section  */}
+      <Features></Features>
     </section>
   )
 }
