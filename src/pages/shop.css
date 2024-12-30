@@ -1,0 +1,38 @@
+ul.react-tabs__tab-list {
+    width: 30%;
+    margin: 0 auto;
+    border-bottom: 0;
+}
+
+/* 
+li#tab\:r1\:0{
+    background: transparent;
+    border: none;
+   
+}
+li#tab\:r1\:1{
+    background: transparent;
+    border: none;
+    
+}
+li#tab\:r1\:2{
+    background: transparent;
+    border: none;
+   
+}
+li#tab\:r1\:3{
+    background: transparent;
+    border: none;
+   
+}
+li#tab\:r1\:4{
+    background: transparent;
+    border: none;
+   
+}
+
+li#tab\:r1\:4:active{
+    border-bottom: 0;
+}
+
+ */

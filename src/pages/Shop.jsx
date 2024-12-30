@@ -4,8 +4,8 @@ import ourShopImg from '../assets/shop/banner2.jpg'
 import useMenu from '../hooks/useMenu';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Card from '../shared/Card';
 import TabComponent from '../components/TabComponent';
+import './shop.css'
 
 
 const Shop = () => {
