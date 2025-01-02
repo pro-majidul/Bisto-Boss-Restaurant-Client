@@ -5,8 +5,8 @@ import { MdLocationPin } from 'react-icons/md';
 
 const LocationCard = () => {
     return (
-        <div className='md:flex items-stretch justify-center gap-5'>
-            <div className="border w-full">
+        <div className='md:flex items-stretch space-y-5 justify-center gap-5'>
+            <div className="border w-full mt-5">
                 <div className='bg-[#D1A054] w-full py-3 flex items-center justify-center'>
                     <BiSolidPhoneCall color='white' size={44} />
                 </div>

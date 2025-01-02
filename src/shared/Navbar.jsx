@@ -50,7 +50,7 @@ const Navbar = () => {
                 </div>
                 <div className='items-center'>
                     <img className='w-10 h-10' src={ShopinCard} alt="" />
-                    <a className="btn">Button</a>
+                    <Link className='text-white text-lg px-2 uppercase hover:text-yellow-300' to='/login'>Login</Link>
                 </div>
 
             </div>

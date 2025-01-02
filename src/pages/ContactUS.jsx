@@ -8,7 +8,7 @@ import LocationCard from '../components/locationCard';
 
 const ContactUS = () => {
     return (
-        <div>
+        <section>
             <Helmet>
                 <title>Bistro Boss | Contact</title>
             </Helmet>
@@ -18,11 +18,15 @@ const ContactUS = () => {
             </div>
             <div className='my-5 py-5 md:my-10 md:py-10'>
                 <Section subHeading='Visite US' heading='Our Location'></Section>
+                <br />
                 <LocationCard></LocationCard>
 
             </div>
+            <div className='my-5 py-5 md:my-10 md:py-10'>
+                <Section subHeading='Send Us a Message' heading='Contact Form'></Section>
+            </div>
 
-        </div>
+        </section>
     );
 };
 
