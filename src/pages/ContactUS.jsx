@@ -7,6 +7,7 @@ import LocationCard from '../components/locationCard';
 
 
 const ContactUS = () => {
+    
     return (
         <section>
             <Helmet>

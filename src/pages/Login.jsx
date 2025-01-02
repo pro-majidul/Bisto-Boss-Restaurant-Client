@@ -7,8 +7,10 @@ import { FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { toast } from 'react-toastify';
+import useUsers from '../hooks/useUsers';
 
 const Login = () => {
+    const { loginUser } = useUsers()
 
     const [disabled, setDisabled] = useState(true)
     const captcharef = useRef(null)
@@ -16,13 +18,21 @@ const Login = () => {
         loadCaptchaEnginge(6);
     }, [])
 
-    const handelUserSignIn = e => {
+    const handelUserSignIn = async e => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log('user login added ', email, password);
-    }
+        try {
+            await loginUser(email, password)
+                .then(result => {
+                    console.log(result);
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handelMatchcaptcha = () => {
 
@@ -93,7 +103,8 @@ const Login = () => {
             </div>
 
         </section>
-    );
+    )
 };
+
 
 export default Login;
