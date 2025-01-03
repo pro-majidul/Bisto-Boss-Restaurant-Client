@@ -8,9 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { toast } from 'react-toastify';
 import useUsers from '../hooks/useUsers';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
-    const {  userlogin, setUsers } = useUsers()
+    const { userlogin, setUsers } = useUsers()
     const navigate = useNavigate()
     const [disabled, setDisabled] = useState(true)
     const captcharef = useRef(null)
@@ -25,7 +26,7 @@ const Login = () => {
         const password = form.password.value;
         console.log('user login added ', email, password);
         try {
-            await  userlogin(email, password)
+            await userlogin(email, password)
                 .then(result => {
                     console.log(result);
                     setUsers(result.user)
@@ -56,6 +57,9 @@ const Login = () => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover'
         }} className='flex items-center justify-center min-h-screen' >
+            <Helmet>
+                <title>Bistro Boss | Login</title>
+            </Helmet>
             <div className='md:flex items-center justify-center gap-5 md:p-10 rounded-xl shadow-2xl border-4 w-10/12 mx-auto '>
                 <div>
                     <img src={AuthenticationImg} alt="" />

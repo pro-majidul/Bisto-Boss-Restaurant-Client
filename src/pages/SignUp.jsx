@@ -5,19 +5,22 @@ import AuthenticationImg from '../assets/others/authentication2.png'
 import bgImage from '../assets/others/authentication.png'
 import useUsers from '../hooks/useUsers';
 import { toast } from 'react-toastify';
+import { useForm } from "react-hook-form"
+import { Helmet } from 'react-helmet-async';
+
 
 
 const SignUp = () => {
     const { userSignUp, setUsers } = useUsers()
     const navigate = useNavigate()
-    const handelUserCreate = async e => {
-        e.preventDefault()
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
+
+    const { register, handleSubmit, formState: { errors }, } = useForm();
+
+
+    const onSubmit = (data) => {
+        console.log(data)
         try {
-            await userSignUp(email, password)
+            userSignUp(data.email, data.password)
                 .then(result => {
                     setUsers(result.user)
                     console.log(result.user);
@@ -26,10 +29,28 @@ const SignUp = () => {
                 })
         } catch (error) {
             console.log(error);
-            toast.error('User Not Created')
         }
+    }
+    // const handelUserCreate = async e => {
+    //     e.preventDefault()
+    //     const form = e.target;
+    //     const name = form.name.value;
+    //     const email = form.email.value;
+    //     const password = form.password.value;
+    //     try {
+    //         await userSignUp(email, password)
+    //             .then(result => {
+    //                 setUsers(result.user)
+    //                 console.log(result.user);
+    //                 navigate('/')
+    //                 toast.success('User Created Successfully')
+    //             })
+    //     } catch (error) {
+    //         console.log(error);
+    //         toast.error('User Not Created')
+    //     }
 
-    };
+    // };
 
     return (
         <section style={{
@@ -37,22 +58,40 @@ const SignUp = () => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover'
         }} className='flex items-center justify-center min-h-screen' >
+
+            <Helmet>
+                <title>Bistro Boss | Sign Up</title>
+            </Helmet>
             <div className='md:flex items-center justify-center gap-5 md:p-10 rounded-xl shadow-2xl border-4 w-10/12 mx-auto '>
 
                 <div className="w-full max-w-lg p-8 space-y-3 rounded-xl ">
                     <h1 className="text-2xl font-bold text-center text-black">Sign Up</h1>
-                    <form onSubmit={handelUserCreate} className="space-y-6 text-black">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-black">
                         <div className="space-y-1 text-sm">
                             <label className="block ">Name</label>
-                            <input required type="text" name="name" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input  {...register("name", { required: true })} type="text" name="name" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
+                            {errors.name && <span className='text-red-500'>This field is required</span>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label className="block ">Email</label>
-                            <input required type="email" name="email" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input   {...register("email", { required: true })} type="email" name="email" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
+                            {errors.email && <span className='text-red-500'>This field is required</span>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label className="block ">Password</label>
-                            <input required type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input  {...register("password", { required: true, maxLength: 20, minLength: 6, pattern: /(?=.*\d)(?=.*[a-zA-Z])/ })} type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 rounded-md text-white" />
+                            {errors.password?.type === "required" && (
+                                <p className='text-red-500'>Password is required</p>
+                            )}
+                            {errors.password?.type === "maxLength" && (
+                                <p className='text-red-500'>password must less than 20 charecter</p>
+                            )}
+                            {errors.password?.type === "minLength" && (
+                                <p className='text-red-500'>password must have 6 charecter</p>
+                            )}
+                            {errors.password?.type === "pattern" && (
+                                <p className='text-red-500'>password must have one uppercase one lowercase and one digit</p>
+                            )}
 
                         </div>
 
