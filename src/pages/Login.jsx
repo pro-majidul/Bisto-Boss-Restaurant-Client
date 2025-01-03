@@ -4,7 +4,7 @@ import bgImage from '../assets/others/authentication.png'
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { toast } from 'react-toastify';
 import useUsers from '../hooks/useUsers';
@@ -13,7 +13,10 @@ import { Helmet } from 'react-helmet-async';
 const Login = () => {
     const { userlogin, setUsers } = useUsers()
     const navigate = useNavigate()
+    const location = useLocation()
     const [disabled, setDisabled] = useState(true)
+    const redirect = location.state || '/';
+    console.log(redirect);
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -28,7 +31,7 @@ const Login = () => {
             const result = await userlogin(email, password)
             console.log(result.user);
             setUsers(result.user)
-            navigate('/')
+            navigate(redirect)
             toast.success('User Login Successfully')
         } catch (error) {
             console.log(error);
