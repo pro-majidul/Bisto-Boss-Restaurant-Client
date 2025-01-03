@@ -4,14 +4,14 @@ import bgImage from '../assets/others/authentication.png'
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { toast } from 'react-toastify';
 import useUsers from '../hooks/useUsers';
 
 const Login = () => {
-    const { loginUser } = useUsers()
-
+    const {  userlogin, setUsers } = useUsers()
+    const navigate = useNavigate()
     const [disabled, setDisabled] = useState(true)
     const captcharef = useRef(null)
     useEffect(() => {
@@ -25,12 +25,16 @@ const Login = () => {
         const password = form.password.value;
         console.log('user login added ', email, password);
         try {
-            await loginUser(email, password)
+            await  userlogin(email, password)
                 .then(result => {
                     console.log(result);
+                    setUsers(result.user)
+                    navigate('/')
+                    toast.success('User Login Successfully')
                 })
         } catch (error) {
             console.log(error);
+            toast.error('User Not Login')
         }
     };
 
