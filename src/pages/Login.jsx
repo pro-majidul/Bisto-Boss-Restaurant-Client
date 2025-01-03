@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AuthenticationImg from '../assets/others/authentication2.png'
 import bgImage from '../assets/others/authentication.png'
 import { FaGoogle } from "react-icons/fa";
@@ -14,7 +14,6 @@ const Login = () => {
     const { userlogin, setUsers } = useUsers()
     const navigate = useNavigate()
     const [disabled, setDisabled] = useState(true)
-    const captcharef = useRef(null)
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -26,22 +25,20 @@ const Login = () => {
         const password = form.password.value;
         console.log('user login added ', email, password);
         try {
-            await userlogin(email, password)
-                .then(result => {
-                    console.log(result);
-                    setUsers(result.user)
-                    navigate('/')
-                    toast.success('User Login Successfully')
-                })
+            const result = await userlogin(email, password)
+            console.log(result.user);
+            setUsers(result.user)
+            navigate('/')
+            toast.success('User Login Successfully')
         } catch (error) {
             console.log(error);
             toast.error('User Not Login')
         }
     };
 
-    const handelMatchcaptcha = () => {
+    const handelMatchcaptcha = (e) => {
 
-        const captchaInputText = captcharef.current.value;
+        const captchaInputText = e.target.value;
         console.log(captchaInputText);
         if (validateCaptcha(captchaInputText)) {
             setDisabled(false)
@@ -78,10 +75,7 @@ const Login = () => {
                         </div>
                         <div className="space-y-1 text-sm">
                             <LoadCanvasTemplate />
-                            <input type="text" name="captha" ref={captcharef} placeholder="enter captha text here" className="w-full px-4 py-3 rounded-md text-white" />
-
-                            <button onClick={handelMatchcaptcha} className='btn mt-3 btn-xs text-center'>verify</button>
-
+                            <input type="text" name="captha" onBlur={handelMatchcaptcha} placeholder="enter captha text here" className="w-full px-4 py-3 rounded-md text-white" />
                         </div>
                         <button disabled={disabled} className="block w-full p-3 text-center rounded-sm text-white  bg-[#D1A054B3]">Sign in</button>
                     </form>

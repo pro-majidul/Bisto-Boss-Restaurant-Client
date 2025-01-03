@@ -16,7 +16,6 @@ const Testimonial = () => {
         fetch('http://localhost:9000/review')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setReviews(data)
             })
     }, [])

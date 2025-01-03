@@ -11,22 +11,21 @@ import { Helmet } from 'react-helmet-async';
 
 
 const SignUp = () => {
-    const { userSignUp, setUsers } = useUsers()
+    const { userSignUp, setUsers, UserProfileUpdate } = useUsers()
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data)
         try {
-            userSignUp(data.email, data.password)
-                .then(result => {
-                    setUsers(result.user)
-                    console.log(result.user);
-                    navigate('/')
-                    toast.success('User Created Successfully')
-                })
+            const result = await userSignUp(data.email, data.password)
+            await UserProfileUpdate(data.name, data.photo)
+            console.log(result);
+            setUsers(result.user)
+            navigate('/')
+            toast.success('Signup Successful')
         } catch (error) {
             console.log(error);
         }
@@ -71,6 +70,11 @@ const SignUp = () => {
                             <label className="block ">Name</label>
                             <input  {...register("name", { required: true })} type="text" name="name" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
                             {errors.name && <span className='text-red-500'>This field is required</span>}
+                        </div>
+                        <div className="space-y-1 text-sm">
+                            <label className="block ">Photo</label>
+                            <input  {...register("photo", { required: true })} type="ulr" name="photo" placeholder="Enter Your Photo URL" className="w-full px-4 py-3 rounded-md text-white" />
+                            {errors.photo && <span className='text-red-500'>This field is required</span>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label className="block ">Email</label>

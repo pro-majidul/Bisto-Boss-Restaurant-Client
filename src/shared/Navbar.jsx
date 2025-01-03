@@ -1,8 +1,22 @@
-import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import ShopinCard from '../assets/icon/shopingCart.png'
+import useUsers from '../hooks/useUsers';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
+    const { users, userLogout, setUsers } = useUsers()
+
+    const handelLogout = async () => {
+        try {
+            await userLogout()
+                .then(result => {
+                    setUsers(result)
+                    toast.success('User Logout Successfully')
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const navOptions = <>
         <NavLink to='/' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Home</NavLink>
         <NavLink to='/contact' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Contact Us</NavLink>
@@ -13,7 +27,7 @@ const Navbar = () => {
     return (
         <>
             <div className="navbar fixed z-10 bg-black max-w-7xl mx-auto bg-opacity-45">
-                <div className="navbar-start">
+                <div className="navbar-start flex-1">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
@@ -41,16 +55,22 @@ const Navbar = () => {
                         <p className='font-semibold text-white text-xl tracking-widest'>Restaurant</p>
                     </Link>
                 </div>
-                <div className="navbar-end ">
+                <div className="md:navbar-end ">
                     <div className='hidden lg:flex'>
                         <ul className="menu menu-horizontal px-1">
                             {navOptions}
                         </ul>
                     </div>
                 </div>
-                <div className='items-center'>
-                    <img className='w-10 h-10' src={ShopinCard} alt="" />
-                    <Link className='text-white text-lg px-2 uppercase hover:text-yellow-300' to='/login'>Login</Link>
+                <div className='items-center '>
+                    <img className='w-12 h-10' src={ShopinCard} alt="" />
+                    {
+                        users ? <>
+                            <button onClick={handelLogout} className='text-white text-lg px-2   hover:text-yellow-300' >LogOut</button>
+                        </> : <>
+                            <Link className='text-white text-lg px-2  hover:text-yellow-300' to='/login'>Login</Link>
+                        </>
+                    }
                 </div>
 
             </div>
