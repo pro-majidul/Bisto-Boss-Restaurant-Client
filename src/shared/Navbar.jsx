@@ -2,9 +2,12 @@ import { Link, NavLink } from 'react-router-dom';
 import ShopinCard from '../assets/icon/shopingCart.png'
 import useUsers from '../hooks/useUsers';
 import { toast } from 'react-toastify';
+import { FaShoppingCart } from "react-icons/fa";
+import UsetansTackQuery from '../hooks/UsetansTackQuery';
 
 const Navbar = () => {
     const { users, userLogout, setUsers } = useUsers()
+    const [data] = UsetansTackQuery()
 
     const handelLogout = async () => {
         try {
@@ -62,8 +65,11 @@ const Navbar = () => {
                         </ul>
                     </div>
                 </div>
-                <div className='items-center '>
-                    <img className='w-12 h-10' src={ShopinCard} alt="" />
+                <div className='items-center gap-5'>
+                    <button>
+                        <FaShoppingCart color='orange' size={32} />
+                        <div className="badge absolute badge-secondary bottom-5">+{data?.length}</div>
+                    </button>
                     {
                         users ? <>
                             <button onClick={handelLogout} className='text-white text-lg px-2   hover:text-yellow-300' >LogOut</button>

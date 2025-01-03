@@ -2,18 +2,41 @@ import React from 'react';
 import useUsers from '../hooks/useUsers';
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../hooks/useAxiosSecure';
+import UsetansTackQuery from '../hooks/UsetansTackQuery';
 
 const Card = ({ salad }) => {
-    const { image, name, recipe, price } = salad
+    const { image, name, recipe, price, _id } = salad
     const { users } = useUsers();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure()
+    const [, refetch] = UsetansTackQuery()
 
 
-    const handelAddCart = (item) => {
+    const handelAddCart = () => {
+        const cardInfo = {
+            CardId: _id,
+            userEmail: users.email,
+            image, name, recipe, price
+        }
 
         if (users && users.email) {
-            //dr
+            axiosSecure.post('/carts', cardInfo)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `${name} added to your cart Success`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                    refetch()
+                })
+
 
         } else {
             Swal.fire({
@@ -44,7 +67,7 @@ const Card = ({ salad }) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions">
-                    <button onClick={() => handelAddCart(salad)} className=" px-5 py-3 border-orange-300 border-b rounded-lg shadow bg-slate-500 hover:bg-[#131211] hover:border-none mt-2 hover:text-orange-300 text-orange-300">Add To Card</button>
+                    <button onClick={handelAddCart} className=" px-5 py-3 border-orange-300 border-b rounded-lg shadow bg-slate-500 hover:bg-[#131211] hover:border-none mt-2 hover:text-orange-300 text-orange-300">Add To Card</button>
                 </div>
             </div>
         </div>
