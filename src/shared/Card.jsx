@@ -17,11 +17,11 @@ const Card = ({ salad }) => {
     const handelAddCart = () => {
         const cardInfo = {
             CardId: _id,
-            userEmail: users.email,
+            userEmail: users?.email,
             image, name, recipe, price
         }
 
-        if (users && users.email) {
+        if (users && users?.email) {
             axiosSecure.post('/carts', cardInfo)
                 .then(res => {
                     console.log(res.data);
