@@ -85,9 +85,9 @@ const MyCarts = () => {
                                     {item.name}
                                 </td>
                                 <td className='text-gray-400'>$ {item.price}</td>
-                                <th>
+                                <td>
                                     <p onClick={() => handelDelete(item._id)} className='py-2 rounded-lg border flex items-center justify-center hover:bg-red-300 bg-red-700 w-1/2'> <MdDelete size={24} /></p>
-                                </th>
+                                </td>
                             </tr>)}
 
 

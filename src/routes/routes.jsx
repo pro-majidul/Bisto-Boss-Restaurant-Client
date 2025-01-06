@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyCarts from "../pages/Dashboard/MyCarts";
+import AllUsers from "../pages/Dashboard/AllUsers";
 
 
 export const router = createBrowserRouter([
@@ -53,6 +54,11 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/myCart',
         element: <MyCarts></MyCarts>
+      },
+      // Admin Related routes
+      {
+        path: '/dashboard/users',
+        element: <AllUsers></AllUsers>
       }
     ]
   }
