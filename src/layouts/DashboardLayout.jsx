@@ -5,12 +5,17 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { MdPermContactCalendar, MdReviews } from 'react-icons/md';
 import { RiCalendarScheduleFill, RiShoppingBagFill } from 'react-icons/ri';
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Helmet } from 'react-helmet-async';
 
 const DashboardLayout = () => {
 
     const isAdmin = true;
     return (
         <section className='bg-[#070D1B]'>
+
+            <Helmet>
+                <title>Bistro Boss | Dashboard</title>
+            </Helmet>
             <div className='md:flex w-full gap-3 max-w-7xl mx-auto'>
                 <div className='md:w-80 w-64 min-h-screen bg-[#D1A054] flex flex-col items-center justify-items-start p-4'>
 
@@ -30,23 +35,23 @@ const DashboardLayout = () => {
                             </li>
                             <li>
                                 <NavLink to='/dashboard/additems' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
-                                <FaUtensils />
-                                   ADD Items</NavLink>
+                                    <FaUtensils />
+                                    ADD Items</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/dashboard/manageitems' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
-                                <FaListUl />
+                                    <FaListUl />
                                     Manage Item</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/dashboard/booking' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
                                     <FaBook></FaBook>
-                                   Manage Booking</NavLink>
+                                    Manage Booking</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/dashboard/users' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
                                     <FaUsers></FaUsers>
-                                   All Users</NavLink>
+                                    All Users</NavLink>
                             </li>
                         </> : <>
 
