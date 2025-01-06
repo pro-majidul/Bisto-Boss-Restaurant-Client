@@ -18,8 +18,25 @@ const AllUsers = () => {
     })
 
 
-    const handelMakeAdmin = user => {
-        console.log('make a admin');
+    const handelMakeAdmin = async (user) => {
+
+        try {
+            const res = await secureAxios.patch(`/users/admin/${user._id}`);
+            console.log(res);
+            if (res.data.modifiedCount > 0) {
+                refetch()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${user.name} is Now Admin`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     const handelDeleteUser = (id) => {
@@ -73,7 +90,9 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <p onClick={() => handelMakeAdmin(user)} className='btn hover:bg-red-300 bg-[#D1A054]'> <FaUsers size={24} /></p>
+                                    {
+                                        user.role === 'Admin' ? "Admin" : <p onClick={() => handelMakeAdmin(user)} className='btn hover:bg-red-300 bg-[#D1A054]'> <FaUsers size={24} /></p>
+                                    }
                                 </td>
                                 <td>
                                     <p onClick={() => handelDeleteUser(user._id)} className='btn hover:bg-red-300 bg-red-700 btn-md'> <MdDelete className='text-white' size={24} /></p>
