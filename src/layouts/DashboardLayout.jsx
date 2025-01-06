@@ -11,6 +11,7 @@ const DashboardLayout = () => {
         <section className='bg-[#070D1B]'>
             <div className='md:flex w-full gap-3 max-w-7xl mx-auto'>
                 <div className='md:w-80 w-64 min-h-screen bg-[#D1A054] flex flex-col items-center justify-items-start p-4'>
+                    
                     <div className='md:my-3 md:py-3 md:space-y-2 w-full'>
 
                         <p className='text-Cinzel dark:text-black uppercase md:text-4xl text-2xl font-extrabold'>BISTRO BOSS</p>

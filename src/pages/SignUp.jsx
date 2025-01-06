@@ -1,5 +1,3 @@
-import React, { useContext } from 'react';
-import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthenticationImg from '../assets/others/authentication2.png'
 import bgImage from '../assets/others/authentication.png'
@@ -7,6 +5,8 @@ import useUsers from '../hooks/useUsers';
 import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form"
 import { Helmet } from 'react-helmet-async';
+import usePublicAxios from '../hooks/usePublicAxios';
+import SocialLogins from '../components/SocialLogins';
 
 
 
@@ -16,13 +16,19 @@ const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
-
+    const publicAxios = usePublicAxios()
     const onSubmit = async (data) => {
         console.log(data)
         try {
             const result = await userSignUp(data.email, data.password)
             await UserProfileUpdate(data.name, data.photo)
-            console.log(result);
+
+            const userInfo = {
+                name: data.name,
+                email: data.email,
+            }
+            const response = await publicAxios.post('/users', userInfo)
+            console.log(response);
             setUsers(result.user)
             navigate('/')
             toast.success('Signup Successful')
@@ -61,29 +67,29 @@ const SignUp = () => {
             <Helmet>
                 <title>Bistro Boss | Sign Up</title>
             </Helmet>
-            <div className='md:flex items-center justify-center gap-5 md:p-10 rounded-xl shadow-2xl border-4 w-10/12 mx-auto '>
+            <div className='md:flex items-center justify-center gap-5 md:p-10 rounded-xl shadow-2xl dark:text-black border-4 w-10/12 mx-auto '>
 
                 <div className="w-full max-w-lg p-8 space-y-3 rounded-xl ">
                     <h1 className="text-2xl font-bold text-center text-black">Sign Up</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-black">
                         <div className="space-y-1 text-sm">
                             <label className="block ">Name</label>
-                            <input  {...register("name", { required: true })} type="text" name="name" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input  {...register("name", { required: true })} type="text" name="name" placeholder="Type here" className="w-full px-4 py-3 rounded-md" />
                             {errors.name && <span className='text-red-500'>This field is required</span>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label className="block ">Photo</label>
-                            <input  {...register("photo", { required: true })} type="ulr" name="photo" placeholder="Enter Your Photo URL" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input  {...register("photo", { required: true })} type="ulr" name="photo" placeholder="Enter Your Photo URL" className="w-full px-4 py-3 rounded-md " />
                             {errors.photo && <span className='text-red-500'>This field is required</span>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label className="block ">Email</label>
-                            <input   {...register("email", { required: true })} type="email" name="email" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input   {...register("email", { required: true })} type="email" name="email" placeholder="Type here" className="w-full px-4 py-3 rounded-md " />
                             {errors.email && <span className='text-red-500'>This field is required</span>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label className="block ">Password</label>
-                            <input  {...register("password", { required: true, maxLength: 20, minLength: 6, pattern: /(?=.*\d)(?=.*[a-zA-Z])/ })} type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input  {...register("password", { required: true, maxLength: 20, minLength: 6, pattern: /(?=.*\d)(?=.*[a-zA-Z])/ })} type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 rounded-md " />
                             {errors.password?.type === "required" && (
                                 <p className='text-red-500'>Password is required</p>
                             )}
@@ -111,7 +117,7 @@ const SignUp = () => {
                         <p className="px-3 text-md ">or Sign Up With</p>
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
                     </div>
-                    <div className="flex justify-center space-x-4">
+                    {/* <div className="flex justify-center space-x-4">
                         <button aria-label="Log in with Google" className="p-3 hover:bg-purple-500 rounded-full border-gray-600 border">
                             <FaFacebookF size={24} color='gray' />
                         </button>
@@ -121,7 +127,8 @@ const SignUp = () => {
                         <button aria-label="Log in with GitHub" className="p-3 hover:bg-purple-500 rounded-full border-gray-600 border">
                             <FaGithub size={24} color='gray' />
                         </button>
-                    </div>
+                    </div> */}
+                    <SocialLogins></SocialLogins>
 
                 </div>
                 <div>

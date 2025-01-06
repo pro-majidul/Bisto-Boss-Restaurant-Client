@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import AuthenticationImg from '../assets/others/authentication2.png'
 import bgImage from '../assets/others/authentication.png'
-import { FaGoogle } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { toast } from 'react-toastify';
 import useUsers from '../hooks/useUsers';
 import { Helmet } from 'react-helmet-async';
+import SocialLogins from '../components/SocialLogins';
 
 const Login = () => {
     const { userlogin, setUsers } = useUsers()
@@ -92,7 +90,7 @@ const Login = () => {
                         <p className="px-3 text-md ">Login with social accounts</p>
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
                     </div>
-                    <div className="flex justify-center space-x-4">
+                    {/* <div className="flex justify-center space-x-4">
                         <button aria-label="Log in with Google" className="p-3 hover:bg-purple-500 rounded-full border-gray-600 border">
                             <FaFacebookF size={24} color='gray' />
                         </button>
@@ -102,7 +100,8 @@ const Login = () => {
                         <button aria-label="Log in with GitHub" className="p-3 hover:bg-purple-500 rounded-full border-gray-600 border">
                             <FaGithub size={24} color='gray' />
                         </button>
-                    </div>
+                    </div> */}
+                    <SocialLogins></SocialLogins>
 
                 </div>
             </div>
