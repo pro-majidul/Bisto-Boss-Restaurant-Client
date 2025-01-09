@@ -5,7 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import UsetansTackQuery from '../hooks/UsetansTackQuery';
 
 const Navbar = () => {
-    const { users, userLogout, setUsers } = useUsers()
+    const { users, userLogout, loading, setUsers } = useUsers()
     const [data] = UsetansTackQuery()
     console.log(data);
     const handelLogout = async () => {
@@ -22,10 +22,18 @@ const Navbar = () => {
     const navOptions = <>
         <NavLink to='/' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Home</NavLink>
         <NavLink to='/contact' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Contact Us</NavLink>
-        <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Dashboard</NavLink>
+        {users?.email && <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Dashboard</NavLink>}
         <NavLink to='/ourmenu' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Our Menu</NavLink>
         <NavLink to='/ourshop/Salad' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Our Shop</NavLink>
     </>
+
+    if (loading) {
+        return <div className='flex items-center justify-center min-h-screen'>
+            <span className='loading-spinner'></span>
+
+        </div>
+    }
+
     return (
         <>
             <div className="navbar fixed z-10 bg-black max-w-7xl mx-auto bg-opacity-45">

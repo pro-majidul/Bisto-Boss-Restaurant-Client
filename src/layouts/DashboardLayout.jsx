@@ -6,10 +6,12 @@ import { MdPermContactCalendar, MdReviews } from 'react-icons/md';
 import { RiCalendarScheduleFill, RiShoppingBagFill } from 'react-icons/ri';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Helmet } from 'react-helmet-async';
+import useAdmin from '../hooks/useAdmin';
 
 const DashboardLayout = () => {
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin()
+    // const isAdmin = false;
     return (
         <section className='bg-[#070D1B]'>
 
@@ -94,17 +96,17 @@ const DashboardLayout = () => {
                                 Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/menu' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
+                            <NavLink to='/ourmenu' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
                                 <GiHamburgerMenu />
                                 Menu</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/shop' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
+                            <NavLink to='/ourshop/Salad' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
                                 <RiShoppingBagFill />
                                 Shop</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/contact' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
+                            <NavLink to='/contact' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
                                 <MdPermContactCalendar />
                                 Contact</NavLink>
                         </li>

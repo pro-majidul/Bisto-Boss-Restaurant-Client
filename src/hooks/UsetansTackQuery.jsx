@@ -13,7 +13,7 @@ const UsetansTackQuery = () => {
         }
     });
 
-    console.log(cart);
+    // console.log(cart);
     return [cart, refetch]
 
 };

@@ -4,11 +4,12 @@ import UsetansTackQuery from '../../hooks/UsetansTackQuery';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const MyCarts = () => {
     const [cart, refetch] = UsetansTackQuery();
     const postData = useAxiosSecure()
-    console.log(cart.length);
+    // console.log(cart.length);
 
     const totalPrice = cart.reduce((total, current) => total + current.price, 0)
 
@@ -33,7 +34,7 @@ const MyCarts = () => {
                                 icon: "success"
                             });
                             refetch()
-                           
+
                         }
                     })
             }
@@ -44,6 +45,9 @@ const MyCarts = () => {
     }
     return (
         <section>
+            <Helmet>
+                <title>Bistro Boss | My Carts</title>
+            </Helmet>
             <div className='mb-3 pb-3 md:mb-5 md:pb-5'>
                 <Section heading='Wanna Add More' subHeading='My Cart'></Section>
             </div>

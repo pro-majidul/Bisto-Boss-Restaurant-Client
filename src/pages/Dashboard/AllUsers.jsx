@@ -5,6 +5,7 @@ import Section from '../../shared/Section';
 import { MdDelete } from 'react-icons/md';
 import { FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AllUsers = () => {
     const secureAxios = useAxiosSecure();
@@ -68,6 +69,9 @@ const AllUsers = () => {
 
     return (
         <div >
+            <Helmet>
+                            <title>Bistro Boss | ALL Users</title>
+                        </Helmet>
             <Section heading='Manage All Users' subHeading='How Many ?' ></Section>
             <div className='my-5 py-5 w-full'></div>
             <div className='bg-white w-full text-black p-6 mt-5'>

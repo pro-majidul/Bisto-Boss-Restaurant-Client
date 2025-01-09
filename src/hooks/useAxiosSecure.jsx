@@ -10,6 +10,8 @@ export const AxiosSecure = axios.create({
 const useAxiosSecure = () => {
     const { userLogout } = useUsers()
     const navigate = useNavigate()
+
+    // interceptor for request to set a header authorizetion tokent when user call data 
     AxiosSecure.interceptors.request.use(config => {
         const token = localStorage.getItem('access-token');
         config.headers.Authorization=(`Bearer ${token}`);
@@ -18,6 +20,8 @@ const useAxiosSecure = () => {
     }, (error => {
         return Promise.reject(error)
     }))
+
+    // interceptor for response when the wrong response come
 
     AxiosSecure.interceptors.response.use((response => {
         return response;

@@ -67,16 +67,16 @@ const Login = () => {
                     <form onSubmit={handelUserSignIn} className="space-y-6 text-black">
                         <div className="space-y-1 text-sm">
                             <label className="block ">Email</label>
-                            <input type="email" name="email" placeholder="Type here" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input type="email" name="email" placeholder="Type here" className="w-full px-4 py-3 rounded-md" />
                         </div>
                         <div className="space-y-1 text-sm">
                             <label className="block ">Password</label>
-                            <input type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 rounded-md " />
 
                         </div>
                         <div className="space-y-1 text-sm">
                             <LoadCanvasTemplate />
-                            <input type="text" name="captha" onBlur={handelMatchcaptcha} placeholder="enter captha text here" className="w-full px-4 py-3 rounded-md text-white" />
+                            <input type="text" name="captha" onBlur={handelMatchcaptcha} placeholder="enter captha text here" className="w-full px-4 py-3 rounded-md " />
                         </div>
                         <button disabled={disabled} className="block w-full p-3 text-center rounded-sm text-white  bg-[#D1A054B3]">Sign in</button>
                     </form>
