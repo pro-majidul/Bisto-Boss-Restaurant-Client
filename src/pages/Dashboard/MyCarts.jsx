@@ -5,6 +5,7 @@ import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const MyCarts = () => {
     const [cart, refetch] = UsetansTackQuery();
@@ -55,7 +56,11 @@ const MyCarts = () => {
                 <div className='font-Cinzel flex items-center justify-evenly my-3 py-3 md:my-5 md:py-5'>
                     <h2 className='font-bold text-black text-xl'>Total Orders: {cart.length}</h2>
                     <h2 className='font-bold text-black text-xl'>Total Price: $ {totalPrice} </h2>
-                    <button className='btn bg-[#D1A054] text-white text-xl'>Pay</button>
+                    {
+                        cart.length ? <Link to='/dashboard/payment'>
+                            <button className='btn bg-[#D1A054] text-white text-xl'>Pay</button>
+                        </Link> : <button disabled className='btn bg-[#D1A054] text-white text-xl'>Pay</button>
+                    }
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table bg-[#D1A054]">
@@ -71,9 +76,9 @@ const MyCarts = () => {
                                 <th className='text-white text-lg'>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='bg-white'>
                             {cart.map((item, idx) => <tr key={item._id}>
-                                <th className='text-gray-400'>
+                                <th className='text-gray-600'>
                                     {idx + 1}
                                 </th>
                                 <td className='w-8 h-8'>
@@ -85,10 +90,10 @@ const MyCarts = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className='text-gray-400'>
+                                <td className='text-gray-600'>
                                     {item.name}
                                 </td>
-                                <td className='text-gray-400'>$ {item.price}</td>
+                                <td className='text-gray-600'>$ {item.price}</td>
                                 <td>
                                     <p onClick={() => handelDelete(item._id)} className='py-2 rounded-lg border flex items-center justify-center hover:bg-red-300 bg-red-700 w-1/2'> <MdDelete size={24} /></p>
                                 </td>
