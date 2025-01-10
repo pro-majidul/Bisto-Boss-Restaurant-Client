@@ -18,8 +18,8 @@ const DashboardLayout = () => {
             <Helmet>
                 <title>Bistro Boss | Dashboard</title>
             </Helmet>
-            <div className='md:flex w-full gap-3 max-w-7xl mx-auto'>
-                <div className='md:w-80 w-64 min-h-screen bg-[#D1A054] flex flex-col items-center justify-items-start p-4'>
+            <div className='md:flex w-full max-w-7xl mx-auto'>
+                <div className='md:w-80 w-64 min-h-screen bg-[#D1A054] md:flex flex-col hidden items-center justify-items-start p-4'>
 
                     <div className='md:my-3 md:py-3 md:space-y-2 w-full'>
 
@@ -114,7 +114,7 @@ const DashboardLayout = () => {
 
                     </ul>
                 </div>
-                <div className='flex-1 my-5 py-5 md:px-8 text-white'>
+                <div className='flex-1 py-10 md:px-8 bg-white text-black w-full'>
                     <Outlet></Outlet>
                 </div>
             </div>

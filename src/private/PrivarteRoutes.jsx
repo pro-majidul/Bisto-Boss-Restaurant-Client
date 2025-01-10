@@ -2,7 +2,7 @@ import React from 'react';
 import useUsers from '../hooks/useUsers';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const PrivarteRoutes = (children ) => {
+const PrivarteRoutes = ({children} ) => {
     const location = useLocation()
     const { user, loading } = useUsers()
     if (loading) {
@@ -11,7 +11,7 @@ const PrivarteRoutes = (children ) => {
         </div>
     }
 
-    if (!user) {
+    if (user) {
         return children
     }
     return <Navigate to='/login' state={{ from: location.pathname }} replace ></Navigate>

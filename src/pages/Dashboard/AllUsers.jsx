@@ -73,14 +73,13 @@ const AllUsers = () => {
                             <title>Bistro Boss | ALL Users</title>
                         </Helmet>
             <Section heading='Manage All Users' subHeading='How Many ?' ></Section>
-            <div className='my-5 py-5 w-full'></div>
-            <div className='bg-white w-full text-black p-6 mt-5'>
+            <div className=' w-full text-black p-6 mt-5'>
                 <h3 className='my-5 text-3xl font-bold'>Total Users : {users.length}</h3>
                 <div className="overflow-x-auto">
-                    <table className="table table-zebra">
+                    <table className="table table-zebra bg-[#D1A054]">
                         {/* head */}
                         <thead>
-                            <tr className='bg-[#D1A054] text-white font-Cinzel'>
+                            <tr className=' text-white font-Cinzel'>
                                 <th></th>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -88,7 +87,7 @@ const AllUsers = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='bg-white'>
                             {users.map((user, idx) => <tr key={user._id}>
                                 <th>{idx + 1}</th>
                                 <td>{user.name}</td>

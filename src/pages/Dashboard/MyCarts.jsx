@@ -58,10 +58,10 @@ const MyCarts = () => {
                     <button className='btn bg-[#D1A054] text-white text-xl'>Pay</button>
                 </div>
                 <div className="overflow-x-auto">
-                    <table className="table w-full">
+                    <table className="table bg-[#D1A054]">
                         {/* head */}
                         <thead>
-                            <tr className=' font-Cinzel rounded-s-full bg-[#D1A054] '>
+                            <tr className=' font-Cinzel  '>
                                 <th className='text-white text-lg'>
                                     Sl.
                                 </th>

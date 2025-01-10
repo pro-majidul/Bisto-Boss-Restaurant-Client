@@ -10,6 +10,10 @@ import SignUp from "../pages/SignUp";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyCarts from "../pages/Dashboard/MyCarts";
 import AllUsers from "../pages/Dashboard/AllUsers";
+import AdminRoutes from "../private/AdminRoutes";
+import AddItems from "../pages/Dashboard/AddItems";
+import ManageItems from "../pages/Dashboard/ManageItems";
+import UpdateItem from "../pages/Dashboard/UpdateItem";
 
 
 export const router = createBrowserRouter([
@@ -51,14 +55,28 @@ export const router = createBrowserRouter([
     path: '/dashboard',
     element: <DashboardLayout></DashboardLayout>,
     children: [
+      // normal users routes 
       {
         path: '/dashboard/myCart',
         element: <MyCarts></MyCarts>
       },
+
       // Admin Related routes
       {
         path: '/dashboard/users',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>
+      },
+      {
+        path: '/dashboard/additems',
+        element: <AdminRoutes> <AddItems></AddItems> </AdminRoutes>
+      },
+      {
+        path: '/dashboard/manageitems',
+        element: <AdminRoutes><ManageItems></ManageItems></AdminRoutes>
+      },
+      {
+        path: '/dashboard/menu/update/:id',
+        element: <AdminRoutes><UpdateItem></UpdateItem></AdminRoutes>
       }
     ]
   }
