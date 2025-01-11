@@ -7,7 +7,6 @@ import UsetansTackQuery from '../hooks/UsetansTackQuery';
 const Navbar = () => {
     const { users, userLogout, loading, setUsers } = useUsers()
     const [data] = UsetansTackQuery()
-    console.log(data);
     const handelLogout = async () => {
         try {
             await userLogout()
@@ -55,7 +54,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-black rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {navOptions}
 
                         </ul>
@@ -73,12 +72,13 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className='items-center gap-5'>
-                    <Link to='/dashboard/myCart'>
-                        <FaShoppingCart color='orange' size={32} />
-                        <div className="badge absolute badge-secondary bottom-5">+{data?.length}</div>
-                    </Link>
+
                     {
                         users ? <>
+                            <Link to='/dashboard/myCart'>
+                                <FaShoppingCart color='orange' size={32} />
+                                <div className="badge absolute badge-secondary bottom-5">+{data?.length}</div>
+                            </Link>
                             <button onClick={handelLogout} className='text-white text-lg px-2   hover:text-yellow-300' >LogOut</button>
                         </> : <>
                             <Link className='text-white text-lg px-2  hover:text-yellow-300' to='/login'>Login</Link>

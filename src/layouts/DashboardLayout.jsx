@@ -68,7 +68,7 @@ const DashboardLayout = () => {
                                     Reservation</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/dashboard/reservation' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
+                                <NavLink to='/dashboard/paymentHistory' className={({ isActive }) => isActive ? 'text-white md:text-xl font-bold' : 'text-black md:text-xl font-bold'} >
                                     <BsCreditCard2FrontFill></BsCreditCard2FrontFill>
                                     Payment History</NavLink>
                             </li>

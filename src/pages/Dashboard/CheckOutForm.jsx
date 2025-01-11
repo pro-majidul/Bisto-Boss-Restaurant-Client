@@ -2,6 +2,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import UsetansTackQuery from "../../hooks/UsetansTackQuery";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useUsers from "../../hooks/useUsers";
+import Swal from "sweetalert2";
 
 
 
@@ -10,7 +12,10 @@ const CheckOutForm = () => {
     const elements = useElements();
     const [errors, setErrors] = useState('')
     const [clientSecret, setClientSecret] = useState('')
-    const [cart] = UsetansTackQuery();
+    const [transaction, setTransaction] = useState('')
+    const [cart, refetch] = UsetansTackQuery();
+    const { users } = useUsers()
+    console.log('cart', cart);
     const totalPrice = cart.reduce((total, items) => total + items.price, 0);
     const axiosSecure = useAxiosSecure();
 
@@ -29,7 +34,7 @@ const CheckOutForm = () => {
         if (totalPrice > 0) {
             createPaymentIntent()
         }
-    }, [axiosSecure , totalPrice])
+    }, [axiosSecure, totalPrice])
 
     const handelSubmit = async (event) => {
         event.preventDefault();
@@ -55,8 +60,53 @@ const CheckOutForm = () => {
             setErrors('')
         }
 
+        const { paymentIntent, error: paymentError } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: users?.name || 'anonymous',
+                    email: users?.email || 'anonymous'
+                }
+            }
+        })
+        if (paymentError) {
+            console.log('paymentError ', paymentError);
+        } else {
+            console.log("paymentIntent", paymentIntent);
+            if (paymentIntent.status === 'succeeded') {
+                setTransaction(paymentIntent.id);
+                // now save tha payment info in database
+
+                const paymentInfo = {
+                    email: users?.email,
+                    price: totalPrice,
+                    transaction: paymentIntent?.id,
+                    date: new Date(),
+                    status: 'pending',
+                    cardId: cart.map(items => items._id),
+                    menuItemId: cart.map(items => items.CardId)
+                }
+                console.log(paymentInfo);
+
+                const res = await axiosSecure.post('/payments', paymentInfo);
+                console.log('payment users history', res.data);
+                if (res.data.paymentresult.insertedId) {
+                    refetch()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Thanks For Your Payment",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+
+            }
+        }
+
 
     }
+
 
     return (
         <form onSubmit={handelSubmit}>
