@@ -38,19 +38,19 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUsers => {
             if (currentUsers?.email) {
                 setUsers(currentUsers);
-                setLoading(false)
-
+          
                 publicAxios.post('/jwt', { email: currentUsers.email })
                     .then(res => {
                         if (res.data.token) {
-                            localStorage.setItem('access-token', res.data.token)
+                            localStorage.setItem('access-token', res.data.token);
+                            setLoading(false)
                         }
                     })
 
             } else {
-                setUsers(null);
-                setLoading(false)
+               
                 localStorage.removeItem('access-token')
+                setLoading(false)
             }
         })
 

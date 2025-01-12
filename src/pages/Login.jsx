@@ -12,7 +12,7 @@ const Login = () => {
     const { userlogin, setUsers } = useUsers()
     const navigate = useNavigate()
     const location = useLocation()
-    const [disabled, setDisabled] = useState(true)
+    const [disabled, setDisabled] = useState(false)
     const redirect = location.state || '/';
     console.log(redirect);
     useEffect(() => {
@@ -41,13 +41,13 @@ const Login = () => {
 
         const captchaInputText = e.target.value;
         console.log(captchaInputText);
-        if (validateCaptcha(captchaInputText)) {
-            setDisabled(false)
-            toast.success('Captcha Matched')
-        } else {
-            setDisabled(true)
-            toast.error('Captcha Not Matched')
-        }
+        // if (validateCaptcha(captchaInputText)) {
+        //     setDisabled(false)
+        //     toast.success('Captcha Matched')
+        // } else {
+        //     setDisabled(true)
+        //     toast.error('Captcha Not Matched')
+        // }
     }
     return (
         <section style={{

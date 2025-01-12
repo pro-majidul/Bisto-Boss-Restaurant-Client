@@ -33,6 +33,7 @@ const CheckOutForm = () => {
 
         if (totalPrice > 0) {
             createPaymentIntent()
+            
         }
     }, [axiosSecure, totalPrice])
 
