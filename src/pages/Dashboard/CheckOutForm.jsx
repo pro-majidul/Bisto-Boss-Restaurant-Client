@@ -15,7 +15,6 @@ const CheckOutForm = () => {
     const [transaction, setTransaction] = useState('')
     const [cart, refetch] = UsetansTackQuery();
     const { users } = useUsers()
-    console.log('cart', cart);
     const totalPrice = cart.reduce((total, items) => total + items.price, 0);
     const axiosSecure = useAxiosSecure();
 

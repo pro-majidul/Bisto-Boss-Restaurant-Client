@@ -30,14 +30,14 @@ const Navbar = () => {
     const navOptions = <>
         <NavLink to='/' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Home</NavLink>
         <NavLink to='/contact' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Contact Us</NavLink>
-        {/* {
+        {
            users && isAdmin &&
             <NavLink to='/dashboard/adminHome' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Dashboard</NavLink>
         }
         {
             users && !isAdmin &&
             <NavLink to='/dashboard/usersHome' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Dashboard</NavLink>
-        } */}
+        }
         <NavLink to='/ourmenu' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Our Menu</NavLink>
         <NavLink to='/ourshop/Salad' className={({ isActive }) => isActive ? 'uppercase  text-lg px-2 text-yellow-300 hover:text-white' : 'text-white text-lg px-2 uppercase hover:text-yellow-300'} >Our Shop</NavLink>
     </>
