@@ -53,7 +53,7 @@ const UpdateItem = () => {
         //     });
         // }
         const res = await axiosSecure.patch(`/menu/${id}` ,item )
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",

@@ -15,7 +15,7 @@ const Login = () => {
     const location = useLocation()
     const [disabled, setDisabled] = useState(true)
     const redirect = location.state || '/';
-    console.log(redirect);
+    // console.log(redirect);
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -25,15 +25,15 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log('user login added ', email, password);
+        // console.log('user login added ', email, password);
         try {
             const result = await userlogin(email, password)
-            console.log(result.user);
+            // console.log(result.user);
             setUsers(result.user)
             navigate(redirect)
             toast.success('User Login Successfully')
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             toast.error('User Not Login')
         }
     };
@@ -41,7 +41,7 @@ const Login = () => {
     const handelMatchcaptcha = (e) => {
 
         const captchaInputText = e.target.value;
-        console.log(captchaInputText);
+        // console.log(captchaInputText);
         if (validateCaptcha(captchaInputText)) {
             setDisabled(false)
             toast.success('Captcha Matched')

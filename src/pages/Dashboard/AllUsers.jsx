@@ -23,7 +23,7 @@ const AllUsers = () => {
 
         try {
             const res = await secureAxios.patch(`/users/admin/${user._id}`);
-            console.log(res);
+            // console.log(res);
             if (res.data.modifiedCount > 0) {
                 refetch()
                 Swal.fire({
@@ -36,12 +36,12 @@ const AllUsers = () => {
             }
 
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     }
 
     const handelDeleteUser = (id) => {
-        console.log(id);
+        // console.log(id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",

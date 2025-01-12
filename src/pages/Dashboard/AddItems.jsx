@@ -15,7 +15,7 @@ const AddItems = () => {
     // const publicAxios = usePublicAxios()
     const axiosSecure = useAxiosSecure()
     const onSubmit = async (data) => {
-        console.log(data)
+        // console.log(data)
         // console.log(data.image[0])
         const imagefile = { image: data.image[0] }
 
@@ -41,7 +41,7 @@ const AddItems = () => {
         }
 
         const response = await axiosSecure.post('/menu', menuItem);
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data.insertedId) {
             reset()
             Swal.fire({

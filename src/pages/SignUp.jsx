@@ -18,7 +18,7 @@ const SignUp = () => {
 
     const publicAxios = usePublicAxios()
     const onSubmit = async (data) => {
-        console.log(data)
+        // console.log(data)
         try {
             const result = await userSignUp(data.email, data.password)
             await UserProfileUpdate(data.name, data.photo)
@@ -28,12 +28,13 @@ const SignUp = () => {
                 email: data.email,
             }
             const response = await publicAxios.post('/users', userInfo)
-            console.log(response);
+            // console.log(response);
             setUsers(result.user)
             navigate('/')
             toast.success('Signup Successful')
         } catch (error) {
-            console.log(error);
+            toast.error('Signup failed')
+            // console.log(error);
         }
     }
     // const handelUserCreate = async e => {

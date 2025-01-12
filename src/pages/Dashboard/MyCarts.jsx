@@ -10,10 +10,10 @@ import { Link } from 'react-router-dom';
 const MyCarts = () => {
     const [cart, refetch] = UsetansTackQuery();
     const postData = useAxiosSecure()
-    console.log(cart);
+    // console.log(cart);
 
     const totalPrice = cart.reduce((total, current) => total + current.price, 0)
-    console.log(totalPrice);
+    // console.log(totalPrice);
 
     const handelDelete = id => {
         Swal.fire({
@@ -28,7 +28,7 @@ const MyCarts = () => {
             if (result.isConfirmed) {
                 postData.delete(`/carts/${id}`)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",

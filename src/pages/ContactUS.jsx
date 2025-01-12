@@ -24,12 +24,12 @@ const ContactUS = () => {
             })
             .then(
                 () => {
-                    console.log('SUCCESS!');
+                    // console.log('SUCCESS!');
                     toast.success('Message Send Successfully')
                     
                 },
                 (error) => {
-                    console.log('FAILED...', error.text);
+                    // console.log('FAILED...', error.text);
                     toast.error(`${error.text}`)
                 },
             );

@@ -16,8 +16,9 @@ const Navbar = () => {
                     setUsers(result)
                     toast.success('User Logout Successfully')
                 })
-        } catch (error) {
-            console.log(error);
+            } catch (error) {
+            toast.error('User Logout failed')
+            // console.log(error);
         }
     }
 

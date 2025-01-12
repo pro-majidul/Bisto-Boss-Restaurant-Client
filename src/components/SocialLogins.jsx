@@ -16,7 +16,7 @@ const SocialLogins = () => {
         try {
             const response = await googleSignIn()
             // if (response.data)
-            console.log(response.user);
+            // console.log(response.user);
 
             const userInfo = {
                 name: response.user?.displayName,
@@ -24,15 +24,16 @@ const SocialLogins = () => {
             }
 
             const res = await publicAxios.post('/users', userInfo)
-            console.log(res.data);
+            // console.log(res.data);
             if (response.user) {
                 toast.success('User Google Login Success')
                 navigate(redirect)
-
+                
             }
-
+            
         } catch (err) {
-            console.log(err);
+            toast.error('User Google Login failed')
+            // console.log(err);
         }
     }
     return (
