@@ -10,9 +10,10 @@ import { Link } from 'react-router-dom';
 const MyCarts = () => {
     const [cart, refetch] = UsetansTackQuery();
     const postData = useAxiosSecure()
-    // console.log(cart.length);
+    console.log(cart);
 
     const totalPrice = cart.reduce((total, current) => total + current.price, 0)
+    console.log(totalPrice);
 
     const handelDelete = id => {
         Swal.fire({

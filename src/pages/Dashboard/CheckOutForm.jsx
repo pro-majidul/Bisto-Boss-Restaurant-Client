@@ -15,24 +15,33 @@ const CheckOutForm = () => {
     const [transaction, setTransaction] = useState('')
     const [cart, refetch] = UsetansTackQuery();
     const { users } = useUsers()
-    const totalPrice = cart.reduce((total, items) => total + items.price, 0);
+    const totalPrice = cart.reduce((total, items) => total + items.price, 0)
+    console.log(totalPrice);;
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        const createPaymentIntent = async () => {
 
-            try {
-                const res = await axiosSecure.post('/create-payment-intent', { price: totalPrice })
-                console.log(res.data);
-                setClientSecret(res.data.ClientSecret)
-            } catch (error) {
-                console.log(error);
-            }
-        }
+
+        // try {
+        //     const res = axiosSecure.post('/create-payment-intent', { price: totalPrice })
+        //     console.log(res.data);
+        //     setClientSecret(res.data.ClientSecret)
+        // } catch (error) {
+        //     console.log(error);
+        // }
+
 
         if (totalPrice > 0) {
-            createPaymentIntent()
-            
+            // createPaymentIntent()
+            axiosSecure.post('/create-payment-intent', { price: totalPrice })
+                .then(res => {
+
+                    console.log(res);
+                    setClientSecret(res?.data?.ClientSecret)
+                })
+
+
+
         }
     }, [axiosSecure, totalPrice])
 
@@ -127,7 +136,7 @@ const CheckOutForm = () => {
                 }}
 
             />
-            <button className="btn btn-primary btn-sm my-4" type="submit" disabled={!stripe || !clientSecret}>
+            <button className="btn btn-primary btn-sm my-4" type="submit" >
                 Pay
             </button>
             <p className="text-red-500">{errors}</p>
@@ -137,3 +146,5 @@ const CheckOutForm = () => {
 };
 
 export default CheckOutForm;
+
+//disabled={!stripe || !clientSecret }

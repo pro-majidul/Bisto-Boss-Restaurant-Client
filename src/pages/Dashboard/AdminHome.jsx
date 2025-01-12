@@ -46,7 +46,7 @@ const AdminHome = () => {
 
     // custom function pi-chart
 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red'];
 
     const RADIAN = Math.PI / 180;
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
@@ -73,12 +73,12 @@ const AdminHome = () => {
             <h3 className='text-3xl font-bold font-Cinzel'>Hi WelCome {users?.displayName ? users.displayName : 'Back '} !</h3>
             <section className='my-2'>
                 <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
-                    <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 bg-gradient-to-r from-[#C143F6] to-[#F5C8FE]">
+                    <div className="flex p-3  rounded-lg bg-gradient-to-r from-[#C143F6] to-[#F5C8FE]">
                         <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4">
                             <IoWalletOutline className='text-3xl text-white' />
                         </div>
                         <div className="flex flex-col justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">{data?.revenue}</p>
+                            <p className="text-3xl font-semibold leading-none">{Number(data?.revenue || 0).toFixed(2)}</p>
                             <p className="capitalize">Revenue</p>
                         </div>
                     </div>
