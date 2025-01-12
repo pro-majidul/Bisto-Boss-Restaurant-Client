@@ -4,7 +4,8 @@ import useUsers from './useUsers';
 import { useNavigate } from 'react-router-dom';
 
 export const AxiosSecure = axios.create({
-    baseURL: 'http://localhost:9000'
+    // baseURL: 'http://localhost:9000'
+    baseURL: 'https://bistro-boss-restaurant-server-dusky.vercel.app'
 })
 
 const useAxiosSecure = () => {
@@ -14,7 +15,7 @@ const useAxiosSecure = () => {
     // interceptor for request to set a header authorizetion tokent when user call data 
     AxiosSecure.interceptors.request.use(config => {
         const token = localStorage.getItem('access-token');
-        config.headers.Authorization=(`Bearer ${token}`);
+        config.headers.Authorization = (`Bearer ${token}`);
         return config
 
     }, (error => {
