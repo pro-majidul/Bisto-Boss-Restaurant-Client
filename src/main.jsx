@@ -15,12 +15,10 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <HelmetProvider>
-
           <RouterProvider router={router} />
           <ToastContainer />
         </HelmetProvider>
       </QueryClientProvider>
-
     </AuthProvider>
   </StrictMode>,
 )
