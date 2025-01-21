@@ -18,6 +18,7 @@ import Payment from "../pages/Dashboard/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory";
 import UsersHome from "../pages/Dashboard/UsersHome";
 import AdminHome from "../pages/Dashboard/AdminHome";
+import UserReservation from "../pages/Dashboard/UserReservation";
 
 
 export const router = createBrowserRouter([
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/usersHome',
         element: <UsersHome></UsersHome>
+      },
+      {
+        path :'/dashboard/reservation',
+        element : <UserReservation></UserReservation>
       },
       {
         path: '/dashboard/myCart',
