@@ -20,6 +20,7 @@ import UsersHome from "../pages/Dashboard/UsersHome";
 import AdminHome from "../pages/Dashboard/AdminHome";
 import UserReservation from "../pages/Dashboard/UserReservation";
 import AddReview from "../pages/Dashboard/AddReview";
+import MyBooking from "../pages/Dashboard/MyBooking";
 
 
 export const router = createBrowserRouter([
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/addReview',
         element: <AddReview></AddReview>
+      },
+      {
+        path: '/dashboard/myBooking',
+        element: <MyBooking></MyBooking>
       },
 
       // Admin Related routes
